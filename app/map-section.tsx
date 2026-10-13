@@ -70,17 +70,11 @@ export default function MapSection() {
     const initMap = () => {
       const L = (window as any).L
       if (!L || !mapContainerRef.current) return
-      if (mapInstanceRef.current) {
-        mapInstanceRef.current.remove()
-        mapInstanceRef.current = null
-      }
-      if ((mapContainerRef.current as any)._leaflet_id) {
-        delete (mapContainerRef.current as any)._leaflet_id
-      }
+      if (mapInstanceRef.current) return
 
       // Initialiser la carte Leaflet centrée sur la Côte d'Ivoire
       const map = L.map(mapContainerRef.current, {
-        center: [7.85, -5.5],
+        center: [7.55, -5.4],
         zoom: 7,
         minZoom: 5,
         maxZoom: 18,
@@ -107,6 +101,7 @@ export default function MapSection() {
       // Placer les marqueurs des stations avec infobulle au clic et au survol
       STATIONS.forEach((station) => {
         const marker = L.marker([station.lat, station.lng], { icon: pepciIcon }).addTo(map)
+        const isNorth = station.lat > 8.5 // Korhogo au nord
 
         // Infobulle détaillée au clic (nom de la station, ville, région, services)
         marker.bindPopup(
@@ -129,16 +124,15 @@ export default function MapSection() {
           {
             maxWidth: 290,
             minWidth: 230,
-            className: 'pepci-custom-leaflet-popup',
-            autoPan: true,
-            autoPanPadding: [30, 80],
+            className: isNorth ? 'pepci-custom-leaflet-popup pepci-popup-bottom' : 'pepci-custom-leaflet-popup',
+            offset: isNorth ? [0, 205] : [0, 7],
+            autoPan: false,
           }
         )
 
-        // Fermer le tooltip au clic et recentrer la carte pour afficher la popup en entier
+        // Fermer le tooltip au clic quand le popup s'ouvre
         marker.on('popupopen', () => {
           marker.closeTooltip()
-          map.panTo([station.lat + 0.38, station.lng], { animate: true, duration: 0.35 })
         })
 
         // Infobulle rapide au survol
