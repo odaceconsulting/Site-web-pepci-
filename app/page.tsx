@@ -246,9 +246,6 @@ export default function Page() {
         }}
       >
         <div className="hero-copy">
-          <p className="eyebrow light" style={{ color: '#fff', marginBottom: '14px' }}>
-            {heroSlides[currentSlide].badge}
-          </p>
           <h1>{heroSlides[currentSlide].title}</h1>
           <a
             className="outline-button"
