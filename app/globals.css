@@ -56,9 +56,9 @@ h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); }
 .green-panel p { color: #eef7f1; font-size: 13.5px; line-height: 1.7; margin: 0; }
 .green-panel .hse-button { display: inline-block; border: 1.5px solid #ffffff; color: #ffffff; background: transparent; padding: 13px 28px; font-family: var(--font-heading); font-size: 11px; font-weight: 800; letter-spacing: 0.6px; text-transform: uppercase; text-decoration: none; transition: all 0.25s ease; margin-top: 22px; cursor: pointer; }
 .green-panel .hse-button:hover { background: #ffffff; color: var(--primary-green); }
-.map-section { padding: 75px 0 0; background-color: var(--cream); }
+.map-section { padding: 75px 0 0; background-color: #ffffff; }
 .map-section .section-heading { max-width: 1200px; margin: 0 auto 30px; padding: 0 5vw; }
-.leaflet-map-wrapper { position: relative; width: 100%; height: 560px; min-height: 480px; background-color: #dbe2e3; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06); }
+.leaflet-map-wrapper { position: relative; width: 100%; height: 600px; min-height: 520px; background-color: #dbe2e3; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06); }
 .leaflet-map-container { width: 100%; height: 100%; z-index: 1; }
 .leaflet-tile { filter: saturate(0.85) contrast(0.96); }
 .pepci-map-marker { filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.35)); transition: filter 0.2s ease, opacity 0.2s ease; cursor: pointer; }

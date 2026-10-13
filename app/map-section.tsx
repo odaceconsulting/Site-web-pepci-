@@ -74,7 +74,7 @@ export default function MapSection() {
 
       // Initialiser la carte Leaflet centrée sur la Côte d'Ivoire
       const map = L.map(mapContainerRef.current, {
-        center: [7.3, -5.4],
+        center: [7.55, -5.4],
         zoom: 7,
         minZoom: 5,
         maxZoom: 18,
@@ -124,7 +124,9 @@ export default function MapSection() {
             maxWidth: 290,
             minWidth: 230,
             className: 'pepci-custom-leaflet-popup',
-            autoPan: false,
+            autoPan: true,
+            autoPanPaddingTopLeft: [20, 80],
+            autoPanPaddingBottomRight: [20, 30],
           }
         )
 
