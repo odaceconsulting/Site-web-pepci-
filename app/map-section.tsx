@@ -70,11 +70,17 @@ export default function MapSection() {
     const initMap = () => {
       const L = (window as any).L
       if (!L || !mapContainerRef.current) return
-      if (mapInstanceRef.current) return
+      if (mapInstanceRef.current) {
+        mapInstanceRef.current.remove()
+        mapInstanceRef.current = null
+      }
+      if ((mapContainerRef.current as any)._leaflet_id) {
+        delete (mapContainerRef.current as any)._leaflet_id
+      }
 
       // Initialiser la carte Leaflet centrée sur la Côte d'Ivoire
       const map = L.map(mapContainerRef.current, {
-        center: [7.55, -5.4],
+        center: [7.85, -5.5],
         zoom: 7,
         minZoom: 5,
         maxZoom: 18,
@@ -125,14 +131,14 @@ export default function MapSection() {
             minWidth: 230,
             className: 'pepci-custom-leaflet-popup',
             autoPan: true,
-            autoPanPaddingTopLeft: [20, 80],
-            autoPanPaddingBottomRight: [20, 30],
+            autoPanPadding: [30, 80],
           }
         )
 
-        // Fermer le tooltip au clic quand le popup s'ouvre
+        // Fermer le tooltip au clic et recentrer la carte pour afficher la popup en entier
         marker.on('popupopen', () => {
           marker.closeTooltip()
+          map.panTo([station.lat + 0.38, station.lng], { animate: true, duration: 0.35 })
         })
 
         // Infobulle rapide au survol
